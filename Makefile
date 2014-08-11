@@ -21,10 +21,10 @@ LTVER = 0:0:0
 prefix=`grep -e "^prefix =" $(LDAP_BUILD)/Makefile | cut -d= -f2`
 
 exec_prefix=$(prefix)
-ldap_subdir=/openldap
+ldap_subdir=/ldap
 
 libdir=$(exec_prefix)/lib
-libexecdir=$(exec_prefix)/libexec
+libexecdir=$(exec_prefix)/lib
 moduledir = $(libexecdir)$(ldap_subdir)
 
 .SUFFIXES: .c .o .lo
