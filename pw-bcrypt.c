@@ -28,7 +28,7 @@
 
 #include "bcrypt.h"
 
-#define BCRYPT_ITERATION 10
+#define BCRYPT_ITERATION 8
 
 const struct berval bcryptscheme = BER_BVC("{BCRYPT}");
 
@@ -58,7 +58,7 @@ static int bcrypt_encrypt(
 	printf("\n");
 #endif
 	if(rc != 0) return LUTIL_PASSWD_ERR;
-	
+
 	rc = bcrypt_hashpw(passwd->bv_val, salt, hash);
 #ifdef SLAPD_BCRYPT_DEBUG
 	if(rc != 0) {
@@ -79,7 +79,7 @@ static int bcrypt_encrypt(
 	if(msg->bv_len < 0){
 		return LUTIL_PASSWD_ERR;
 	}
-	
+
 	return LUTIL_PASSWD_OK;
 }
 
