@@ -18,7 +18,7 @@ PROGRAMS = pw-bcrypt.la
 LTVER = 0:0:0
 
 #prefix=/usr/local
-prefix=`grep -e "^prefix =" $(LDAP_BUILD)/Makefile | cut -d= -f2`
+prefix=`grep -e "^prefix =" $(LDAP_BUILD)/Makefile | cut -d= -f2 | sed -e 's/^ *//' -e 's/ *$$//'`
 
 exec_prefix=$(prefix)
 ldap_subdir=/ldap
