@@ -18,7 +18,7 @@ CC = gcc
 AS = $(CC)
 LD = $(CC)
 RM = rm -f
-CFLAGS = -W -Wall -Wbad-function-cast -Wcast-align -Wcast-qual -Wmissing-prototypes -Wstrict-prototypes -Wshadow -Wundef -Wpointer-arith -O2 -fomit-frame-pointer -funroll-loops
+CFLAGS = -W -Wall -Wbad-function-cast -Wcast-align -Wcast-qual -Wmissing-prototypes -Wstrict-prototypes -Wshadow -Wundef -Wpointer-arith -O2 -fomit-frame-pointer -funroll-loops -fPIC
 ASFLAGS = -c
 LDFLAGS = -s
 
@@ -39,6 +39,9 @@ EXTRA_MANS = \
 	crypt_gensalt.3 crypt_gensalt_rn.3 crypt_gensalt_ra.3
 
 all: $(CRYPT_OBJS) man
+
+crypt_blowfish.a: $(CRYPT_OBJS)
+	ar r crypt_blowfish.a $(CRYPT_OBJS)
 
 check: crypt_test
 	./crypt_test
@@ -74,4 +77,4 @@ wrapper.o: crypt.h ow-crypt.h crypt_blowfish.h crypt_gensalt.h
 	$(AS) $(ASFLAGS) $*.S
 
 clean:
-	$(RM) crypt_test crypt_test_threads *.o $(EXTRA_MANS) core
+	$(RM) crypt_test crypt_test_threads *.o *.a $(EXTRA_MANS) core
